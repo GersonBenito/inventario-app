@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 export const Categoria = () => {
 
     const [visible, setVisible] = useState(false);
+    const [ accion, setAccion ] = useState('add');
+    const [ categoria, setCategoria] = useState({});
 
     const { loading, error, data } = useQuery(GET_CATEGORIAS);
     const [ deleteCategoria ] = useMutation(DELETE_CATEGORIA, {
@@ -86,10 +88,12 @@ export const Categoria = () => {
     const showModal = () => {
 
         setVisible(true);
+        setAccion('add');
     }
 
     const calcelModal = () => {
         setVisible(false)
+        setAccion('add');
 
     }
 
@@ -136,7 +140,9 @@ export const Categoria = () => {
 
     const handleUpdate = (categoria) =>{
 
-        console.log(categoria);
+        setVisible(true);
+        setCategoria(categoria);
+        setAccion('update');
 
     }
 
@@ -169,7 +175,7 @@ export const Categoria = () => {
                 visible={visible}
                 calcel={calcelModal}
             >
-                <AgregarCategoria closeModal={calcelModal} />
+                <AgregarCategoria closeModal={calcelModal} updateData={ categoria } accion={ accion } />
             </Modals>
         </Contenedor>
     )

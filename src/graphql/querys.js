@@ -27,3 +27,12 @@ export const DELETE_CATEGORIA = gql`
         }
     }
 `
+
+export const UPDATE_CATEGORIA = gql`
+    mutation($id: ID!, $data: PostCategoria!){
+        updateCategoria(_id: $id, data: $data) {
+            status
+            message
+        }
+    }
+`
